@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    <title>Rick&Morty Generator</title>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    <link rel="stylesheet" href="style.css">
+    <!-- import the webpage's javascript file -->
+    <script src="/script.js" defer></script>
+  </head>  
+  <body>
+    <img id="profil" src="https://i.imgur.com/t2gZFoh.jpg"/> <br>
+    <div>
+      <table class="center">
+        <tr>
+          <td>Nom</td>
+          <td id="nom"></td>
+        </tr>
+        <tr>
+          <td>Espece</td>
+          <td id="espece"></td>
+        </tr>
+        <tr>
+          <td>Etat</td>
+          <td id="etat"></td>
+        </tr>
+        <tr>
+          <td>Genre</td>
+          <td id="genre"></td>
+        </tr>
+        <tr>
+          <td>Origin</td>
+          <td id="origin"></td>
+        </tr>
+        <tr>
+          <td>Location Actuelle</td>
+          <td id="location"></td>
+        </tr>
+      </table>
+    </div>
+    
+    <button>
+      Random
+    </button>
+
+    <script src="https://button.glitch.me/button.js"></script>
+  </body>
+</html>
+let url = "https://rickandmortyapi.com/api/character/"
+
+$(document).ready(function(){
+  $("button").click(function(){
+    var random = Math.floor(Math.random() * 493);
+    $.getJSON(url+random, function(result){ 
+      console.log(result)
+      document.getElementById("nom").innerHTML = result.name;
+      document.getElementById("etat").innerHTML = result.status;
+      document.getElementById("espece").innerHTML = result.species;
+      document.getElementById("genre").innerHTML = result.gender;
+      document.getElementById("origin").innerHTML = result.origin.name;
+      document.getElementById("location").innerHTML = result.location.name;
+      document.getElementById("profil").src = result.image;
+
+    });
+  });
+});
+body {
+  font-family: helvetica, arial, sans-serif;
+  margin: 2em;
+  text-align:center
+}
+
+h1 {
+  font-style: italic;
+  color: #373fff;
+}
+
+ table.center {
+    margin-left:auto; 
+    margin-right:auto;
+  }
